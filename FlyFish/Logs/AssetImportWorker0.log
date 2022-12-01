@@ -1,0 +1,567 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.33f1 (915a7af8b0d5) revision 9525882'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Core' Language: 'en' Physical Memory: 16344 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+E:\Unity Versions\2020.3.33f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+E:/Unity/FlyFish/FlyFish
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+59395
+Successfully changed project path to: E:/Unity/FlyFish/FlyFish
+E:/Unity/FlyFish/FlyFish
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 33.11 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.33f1 (915a7af8b0d5)
+[Subsystems] Discovering subsystems at path E:/Unity Versions/2020.3.33f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Unity/FlyFish/FlyFish/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
+    Vendor:   
+    VRAM:     8088 MB
+    Driver:   31.0.15.1694
+Initialize mono
+Mono path[0] = 'E:/Unity Versions/2020.3.33f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Unity Versions/2020.3.33f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'E:/Unity Versions/2020.3.33f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56396
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/Unity Versions/2020.3.33f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.004090 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 29.86 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.598 seconds
+Domain Reload Profiling:
+	ReloadAssembly (599ms)
+		BeginReloadAssembly (92ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (427ms)
+			LoadAssemblies (87ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (146ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (28ms)
+			SetupLoadedEditorAssemblies (149ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (30ms)
+				BeforeProcessingInitializeOnLoad (14ms)
+				ProcessInitializeOnLoadAttributes (73ms)
+				ProcessInitializeOnLoadMethodAttributes (27ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.013444 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image E:\Unity\FlyFish\FlyFish\Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.31 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.014 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1016ms)
+		BeginReloadAssembly (177ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (18ms)
+		EndReloadAssembly (770ms)
+			LoadAssemblies (126ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (256ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (40ms)
+			SetupLoadedEditorAssemblies (293ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (82ms)
+				ProcessInitializeOnLoadAttributes (183ms)
+				ProcessInitializeOnLoadMethodAttributes (9ms)
+				AfterProcessingInitializeOnLoad (14ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.29 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1538 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 72.4 MB.
+System memory in use after: 72.5 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 1975.
+Total: 2.563400 ms (FindLiveObjects: 0.128900 ms CreateObjectMapping: 0.049200 ms MarkObjects: 2.315100 ms  DeleteObjects: 0.069300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/FPFishing/Scenes/FPFishing.unity
+  artifactKey: Guid(7817902b78f52384eb4d3d6301e1919b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Scenes/FPFishing.unity using Guid(7817902b78f52384eb4d3d6301e1919b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '538e0e441d1246efe6d4a0b1d295c4d4') in 0.005624 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.723914 seconds.
+  path: ProjectSettings/TagManager.asset
+  artifactKey: Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing ProjectSettings/TagManager.asset using Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce6a35c3cddc746e7501c0bd0ed6d4ce') in 0.047453 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 66.277236 seconds.
+  path: Assets/FPFishing/Art/Materials/Eyes.mat
+  artifactKey: Guid(d769828138751b14dac5c34cfbc625a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/Eyes.mat using Guid(d769828138751b14dac5c34cfbc625a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '951f387dd6136badd55bf526264d6ac5') in 0.223464 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000520 seconds.
+  path: Assets/FPFishing/Art/Materials/Marker.mat
+  artifactKey: Guid(f7a2c9dd5f0fd9a4e95431094580a7a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/Marker.mat using Guid(f7a2c9dd5f0fd9a4e95431094580a7a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0c3c9d85270fa1bef0993372a4f73ea') in 0.097989 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000440 seconds.
+  path: Assets/FPFishing/Art/Materials/Ground.mat
+  artifactKey: Guid(fe59934756dd67a43a7ce0c19416e8c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/Ground.mat using Guid(fe59934756dd67a43a7ce0c19416e8c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e83a641f42f72d8e7eb267f72ca6c50') in 0.011933 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000358 seconds.
+  path: Assets/FPFishing/Art/Materials/Fish.mat
+  artifactKey: Guid(5483ea3fb5521ce40906a208d72e6cd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/Fish.mat using Guid(5483ea3fb5521ce40906a208d72e6cd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a81321ff5b09bd31a8b662584af67ee') in 0.011292 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000429 seconds.
+  path: Assets/FPFishing/Art/Materials/Hook.mat
+  artifactKey: Guid(7522c545396784c40a53182726f79340) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/Hook.mat using Guid(7522c545396784c40a53182726f79340) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c27dd4eeac446b3a16332da784937cd9') in 0.010058 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.877750 seconds.
+  path: Assets/FPFishing/Art/Sprites/Fishing Icon.png
+  artifactKey: Guid(d1492b7c04752634784b508e3cdf862a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Sprites/Fishing Icon.png using Guid(d1492b7c04752634784b508e3cdf862a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '777f0d8196d8441dac88406a694cb191') in 0.069089 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000413 seconds.
+  path: Assets/FPFishing/Art/Sprites/IsometricDiamond.png
+  artifactKey: Guid(cc878d207dcadd04b92b531ca534ad3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Sprites/IsometricDiamond.png using Guid(cc878d207dcadd04b92b531ca534ad3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d419329815eb2ea8be8ff284ce8f832') in 0.016530 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.531375 seconds.
+  path: Assets/FPFishing/Art/Meshes/Fish.fbx
+  artifactKey: Guid(182eaebc1cb03a1418473ebad9d5f2fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Meshes/Fish.fbx using Guid(182eaebc1cb03a1418473ebad9d5f2fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d1aee35db2f70fe8389b56f3b72b1a3') in 0.237898 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005283 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image E:\Unity\FlyFish\FlyFish\Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.32 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.943 seconds
+Domain Reload Profiling:
+	ReloadAssembly (944ms)
+		BeginReloadAssembly (136ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (739ms)
+			LoadAssemblies (120ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (250ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (34ms)
+			SetupLoadedEditorAssemblies (275ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (77ms)
+				ProcessInitializeOnLoadAttributes (170ms)
+				ProcessInitializeOnLoadMethodAttributes (9ms)
+				AfterProcessingInitializeOnLoad (14ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.31 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1520 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 74.8 MB.
+System memory in use after: 74.8 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 2026.
+Total: 3.073300 ms (FindLiveObjects: 0.132900 ms CreateObjectMapping: 0.037300 ms MarkObjects: 2.778200 ms  DeleteObjects: 0.123600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 280.377093 seconds.
+  path: Assets/FPFishing/Art/Materials
+  artifactKey: Guid(65d6625580dfd3d49ae00ac6590411fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials using Guid(65d6625580dfd3d49ae00ac6590411fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e359771a4d2fbe45b981f7161c69645') in 0.007451 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.744456 seconds.
+  path: Assets/FPFishing/Art/Materials/New Material.mat
+  artifactKey: Guid(04ccf68429395554c9d1b709f598cbc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/New Material.mat using Guid(04ccf68429395554c9d1b709f598cbc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9442ce68449b3adbf691330995893e6') in 0.056012 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 10.541684 seconds.
+  path: Assets/FPFishing/Art/Materials/Eyes.mat
+  artifactKey: Guid(d769828138751b14dac5c34cfbc625a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/Eyes.mat using Guid(d769828138751b14dac5c34cfbc625a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '862e1bc1f62d3a171f3c682a021dfa0f') in 0.013838 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000372 seconds.
+  path: Assets/FPFishing/Art/Materials/Fish.mat
+  artifactKey: Guid(5483ea3fb5521ce40906a208d72e6cd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/Fish.mat using Guid(5483ea3fb5521ce40906a208d72e6cd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ee8ea133d22bb401b3d381e88962bbc') in 0.012851 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000334 seconds.
+  path: Assets/FPFishing/Art/Materials/Hook.mat
+  artifactKey: Guid(7522c545396784c40a53182726f79340) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/Hook.mat using Guid(7522c545396784c40a53182726f79340) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4b3630d78581a68da61166dbd7fcc74') in 0.016605 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000369 seconds.
+  path: Assets/FPFishing/Art/Materials/New Material.mat
+  artifactKey: Guid(04ccf68429395554c9d1b709f598cbc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/New Material.mat using Guid(04ccf68429395554c9d1b709f598cbc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0af383d536c2fa7433b3457ed9817eaf') in 0.012457 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.689589 seconds.
+  path: Assets/FPFishing/Art/Materials/Line.mat
+  artifactKey: Guid(04ccf68429395554c9d1b709f598cbc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Art/Materials/Line.mat using Guid(04ccf68429395554c9d1b709f598cbc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '302b4be8501832bab68dc4ded02264b9') in 0.010567 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008172 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image E:\Unity\FlyFish\FlyFish\Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.30 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.940 seconds
+Domain Reload Profiling:
+	ReloadAssembly (940ms)
+		BeginReloadAssembly (145ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (32ms)
+		EndReloadAssembly (729ms)
+			LoadAssemblies (121ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (244ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (35ms)
+			SetupLoadedEditorAssemblies (273ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (77ms)
+				ProcessInitializeOnLoadAttributes (168ms)
+				ProcessInitializeOnLoadMethodAttributes (8ms)
+				AfterProcessingInitializeOnLoad (14ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.34 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1522 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 75.1 MB.
+System memory in use after: 75.1 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2031.
+Total: 2.480200 ms (FindLiveObjects: 0.112000 ms CreateObjectMapping: 0.042200 ms MarkObjects: 2.267200 ms  DeleteObjects: 0.058100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 16.146889 seconds.
+  path: Assets/FPFishing/Resources/GameAssets.prefab
+  artifactKey: Guid(aff22fec50a47c0439a153234a3fd6bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Resources/GameAssets.prefab using Guid(aff22fec50a47c0439a153234a3fd6bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2216fc09c9c635e8fd9d7051e57f421d') in 0.085386 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.308439 seconds.
+  path: Assets/FPFishing/Prefabs/DamagePopup.prefab
+  artifactKey: Guid(496a00ebe160a434fb56108576c50581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Prefabs/DamagePopup.prefab using Guid(496a00ebe160a434fb56108576c50581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bff8953ca62cdde9d6745c5a8548f3f8') in 0.027515 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.777919 seconds.
+  path: Assets/FPFishing/Prefabs/Fish prefabs/Fish.prefab
+  artifactKey: Guid(70252c5e8f1a82a418b10b6426ccdf86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Prefabs/Fish prefabs/Fish.prefab using Guid(70252c5e8f1a82a418b10b6426ccdf86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dfd99797d6b28ef5df9b706b696cd7d7') in 0.033733 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.628007 seconds.
+  path: Assets/FPFishing/Scriptable Libraries/Pole Library
+  artifactKey: Guid(ff91bc959b1c6bd44b21cc3ad59bf9ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Scriptable Libraries/Pole Library using Guid(ff91bc959b1c6bd44b21cc3ad59bf9ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '801b02b2c4ace60a2dd71f20901da800') in 0.005046 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.303173 seconds.
+  path: Assets/FPFishing/Scriptable Libraries/Pole Library/StarterPole.asset
+  artifactKey: Guid(2e426089b528d1a4492e906ab590821d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Scriptable Libraries/Pole Library/StarterPole.asset using Guid(2e426089b528d1a4492e906ab590821d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'abd589edc3b35d6ccde0c6334409da6a') in 0.008594 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 21.377109 seconds.
+  path: Assets/FPFishing/Scriptable Libraries/Pole Library/StarterPole.asset
+  artifactKey: Guid(2e426089b528d1a4492e906ab590821d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Scriptable Libraries/Pole Library/StarterPole.asset using Guid(2e426089b528d1a4492e906ab590821d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7fbd0e2282aa6aeb0ab167227fb19595') in 0.007010 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005430 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image E:\Unity\FlyFish\FlyFish\Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.41 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.948 seconds
+Domain Reload Profiling:
+	ReloadAssembly (948ms)
+		BeginReloadAssembly (140ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (30ms)
+		EndReloadAssembly (740ms)
+			LoadAssemblies (124ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (244ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (35ms)
+			SetupLoadedEditorAssemblies (276ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (78ms)
+				ProcessInitializeOnLoadAttributes (169ms)
+				ProcessInitializeOnLoadMethodAttributes (9ms)
+				AfterProcessingInitializeOnLoad (14ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.31 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1521 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 75.0 MB.
+System memory in use after: 75.1 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2036.
+Total: 2.553600 ms (FindLiveObjects: 0.128400 ms CreateObjectMapping: 0.039200 ms MarkObjects: 2.322900 ms  DeleteObjects: 0.062300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005912 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image E:\Unity\FlyFish\FlyFish\Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.35 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.110 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1110ms)
+		BeginReloadAssembly (155ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (31ms)
+		EndReloadAssembly (874ms)
+			LoadAssemblies (143ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (291ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (41ms)
+			SetupLoadedEditorAssemblies (326ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (90ms)
+				ProcessInitializeOnLoadAttributes (203ms)
+				ProcessInitializeOnLoadMethodAttributes (10ms)
+				AfterProcessingInitializeOnLoad (16ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.32 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1521 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 75.1 MB.
+System memory in use after: 75.1 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2039.
+Total: 2.683800 ms (FindLiveObjects: 0.174300 ms CreateObjectMapping: 0.063400 ms MarkObjects: 2.379800 ms  DeleteObjects: 0.065200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 172.264997 seconds.
+  path: Assets/FPFishing/Scriptable Libraries/Fish Library/Starter.asset
+  artifactKey: Guid(4c0ad54de4151554099c4b3985f77f72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FPFishing/Scriptable Libraries/Fish Library/Starter.asset using Guid(4c0ad54de4151554099c4b3985f77f72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eef9ba6f87c37e8fbef0cdabeb8b811c') in 0.017720 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005258 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image E:\Unity\FlyFish\FlyFish\Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.31 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.916 seconds
+Domain Reload Profiling:
+	ReloadAssembly (916ms)
+		BeginReloadAssembly (131ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (28ms)
+		EndReloadAssembly (718ms)
+			LoadAssemblies (119ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (237ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (33ms)
+			SetupLoadedEditorAssemblies (269ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (77ms)
+				ProcessInitializeOnLoadAttributes (165ms)
+				ProcessInitializeOnLoadMethodAttributes (9ms)
+				AfterProcessingInitializeOnLoad (14ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.33 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1521 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 75.1 MB.
+System memory in use after: 75.1 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2042.
+Total: 2.463400 ms (FindLiveObjects: 0.111800 ms CreateObjectMapping: 0.040600 ms MarkObjects: 2.239700 ms  DeleteObjects: 0.070500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
