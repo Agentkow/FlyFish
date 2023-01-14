@@ -41,6 +41,7 @@ public class CableComponent : MonoBehaviour
 	{
 		InitCableParticles();
 		InitLineRenderer();
+		TurnOffLine();
 	}
 
 	/**
@@ -97,6 +98,15 @@ public class CableComponent : MonoBehaviour
 	{
 		RenderCable();
 	}
+
+	public void TurnOffLine()
+    {
+		line.enabled = false;
+	}
+	public void TurnOnLine()
+    {
+		line.enabled = true;
+    }
 
 	/**
 	 * Render Cable

@@ -8,4 +8,5 @@ public class HookEquipment : ScriptableObject
     public float damage;
     public float flySpeed;
     public float tension;
+    public float armorPenetrationLevel = 1;
 }

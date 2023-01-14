@@ -5,12 +5,23 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Fish", menuName =("Fish"))]
 public class FishStats : ScriptableObject
 {
+    public enum FishTypeSpawn
+    {
+        Common,
+        Rare
+    }
+
     public string fishName = "Fish";
+    public FishTypeSpawn rarity;
     public float maxHealth;
     public float weightRange;
+    public float radiusRange;
+    public float heightRange;
+    public float minRandom;
+    public float maxRandom;
     public int armorLevel;
-    public float swimSpeed;
     public float territorialness;
+    public GameObject model;
 
     #region Boid Stats
     [Header("Boid Stats")]

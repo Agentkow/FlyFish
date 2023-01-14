@@ -19,5 +19,6 @@ public class GameAssets : MonoBehaviour
 
     public GameObject damagePopup;
     public GameObject fish;
+    public GameObject coin;
 
 }

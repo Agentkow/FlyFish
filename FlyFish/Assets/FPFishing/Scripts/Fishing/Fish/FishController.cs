@@ -7,31 +7,30 @@ public class FishController : MonoBehaviour
     [Header("Plug inspector")]
     [SerializeField] private FishStats fs;
     [SerializeField] private GameObject playerPos;
-    [SerializeField] private Collider col;
+    [SerializeField] private CapsuleCollider col;
     [SerializeField] private List<Transform> wayPoints;
     [SerializeField] private Transform nextPoint;
-    [SerializeField] private Transform detectPoint;
     [SerializeField] private LayerMask avoid;
-
-    [SerializeField] private float detectRange = 3;
+    [SerializeField] private GameObject model;
     [SerializeField] private float swimSpeed;
     [SerializeField] private Vector3 position;
     [SerializeField] private Vector3 forward;
+    [SerializeField] private float health;
+
+    [field: SerializeField] public float weight { get; private set; }
     [field: SerializeField] public Vector3 velocity { get; private set; }
 
     private Transform cacheTransform;
     private Transform target;
     
-
-    private float health;
     private Rigidbody rb;
     [field: SerializeField] public FishState state { get; private set; }
 
     public enum FishState
     {
         Swim,
-        StruggleHeavy,
-        StruggleLight,
+        Struggle_Overweight,
+        Struggle_Underweight,
         Stunned,
         Caught,
     }
@@ -41,32 +40,37 @@ public class FishController : MonoBehaviour
         cacheTransform = transform;
     }
 
-    public void Initialize(FishStats fishStates, Transform target) // set up fish
+    public void Setup(FishStats fish, Transform target) // set up fish when instantiated
     {
         this.target = target;
-        this.fs = fishStates;
-        state = FishState.Swim;
-        health = fs.maxHealth;
-        swimSpeed = fs.swimSpeed;
+        fs = fish;
+        model = Instantiate(fs.model);
+        model.transform.position = transform.position;
+        model.transform.parent = gameObject.transform;
         position = cacheTransform.position;
         forward = cacheTransform.forward;
-        velocity = transform.forward * fs.swimSpeed;
+        col = GetComponent<CapsuleCollider>();
     }
-
+    public void Initialize(List<Transform> points) // called by spawner: sets territory
+    {
+        state = FishState.Swim;
+        health = fs.maxHealth;
+        wayPoints = points;
+        float randSize = (fs.weightRange + Random.Range(-fs.minSpeed, fs.maxSpeed)) * 0.1f;
+        float randomizer = Random.Range(-fs.minRandom, fs.maxRandom);
+        model.transform.localScale *= randSize;
+        col.radius = fs.radiusRange + (randomizer * 0.1f);
+        col.height = fs.heightRange + (randomizer * 0.1f);
+        weight = fs.weightRange + randomizer;
+        nextPoint = RandomWaypoint();
+    }
     private void Start()
     {
-        col = GetComponent<CapsuleCollider>();
         rb = gameObject.GetComponent<Rigidbody>();
         playerPos = GameObject.Find("Player");
-        health = fs.maxHealth;
-        nextPoint = RandomWaypoint();
-        swimSpeed = fs.swimSpeed;
+        
     }
 
-    public void SetWaypoints(List<Transform> points)
-    {
-        wayPoints = points;
-    }
     private Transform RandomWaypoint()
     {
         int rand = Random.Range(0, (wayPoints.Count));
@@ -80,12 +84,14 @@ public class FishController : MonoBehaviour
             case FishState.Swim:
                 Swimming();
                 break;
-            case FishState.StruggleHeavy:
-                StrugglingHeavy();
+            case FishState.Struggle_Overweight:
+                Struggling_PullingPlayer();
                 break;
-            case FishState.StruggleLight:
+            case FishState.Struggle_Underweight:
+                Struggling_PlayerStronger();
                 break;
             case FishState.Stunned:
+                SlowDown();
                 break;
             case FishState.Caught:
                 Catching();
@@ -122,10 +128,10 @@ public class FishController : MonoBehaviour
         acceleration += (nextPoint.position - transform.position).normalized * fs.territorialness;
 
         velocity += acceleration * Time.deltaTime;
-        float speed = velocity.magnitude;
-        Vector3 dir = velocity / speed;
-        speed = Mathf.Clamp(speed, fs.minSpeed, fs.maxSpeed);
-        velocity = dir * speed;
+        swimSpeed = velocity.magnitude;
+        Vector3 dir = velocity / swimSpeed;
+        swimSpeed = Mathf.Clamp(swimSpeed, fs.minSpeed, fs.maxSpeed);
+        velocity = dir * swimSpeed;
 
         cacheTransform.position += velocity * Time.deltaTime;
         cacheTransform.forward = dir;
@@ -178,17 +184,19 @@ public class FishController : MonoBehaviour
     private void RunFromPlayer()
     {
         Vector3 acceleration = Vector3.zero;
-
+        
         if (IsHeadingForCollision())
         {
             Vector3 collisionAvoidDir = ObstacleRays();
-            Vector3 collisionAvoidForce = SteerTowards(collisionAvoidDir) * fs.avoidCollisionWeight;
+            Vector3 collisionAvoidForce = SteerTowards(collisionAvoidDir) * fs.avoidCollisionWeight*2;
             acceleration += collisionAvoidForce;
         }
-
-        Vector3 accelDir = (transform.position - playerPos.transform.position);
+        
+        Vector3 accelDir = (transform.position - playerPos.transform.position );
         accelDir = new Vector3(accelDir.x, 0, accelDir.z);
         acceleration += accelDir;
+
+
 
         velocity += acceleration * Time.deltaTime;
         float speed = velocity.magnitude;
@@ -203,26 +211,70 @@ public class FishController : MonoBehaviour
 
     }
 
-    
+    private void FightAgainstPlayer()
+    {
+        Vector3 acceleration = Vector3.zero;
+
+        if (IsHeadingForCollision())
+        {
+            Vector3 collisionAvoidDir = ObstacleRays();
+            Vector3 collisionAvoidForce = SteerTowards(collisionAvoidDir) * fs.avoidCollisionWeight;
+            acceleration += collisionAvoidForce;
+        }
+
+        if (transform.position.y>=playerPos.transform.position.y)
+        {
+            acceleration += (new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10))) * 5;
+        }
+        else
+        {
+            acceleration += (new Vector3(Random.Range(-10, 10), Random.Range(0, 10), Random.Range(-10, 10))) * 5;
+        }
+        
+
+        velocity += acceleration * Time.deltaTime;
+        float speed = velocity.magnitude;
+        Vector3 dir = velocity / speed;
+        speed = Mathf.Clamp(speed, fs.minSpeed, fs.maxSpeed * 1.5f);
+        velocity = dir * speed;
+
+        cacheTransform.position += velocity * Time.deltaTime;
+        cacheTransform.forward = dir;
+        position = cacheTransform.position;
+        forward = dir;
+
+    }
+
+    private void SlowDown()
+    {
+        Vector3 move = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime);
+        transform.Translate(move * Time.deltaTime);
+    }
 
     #region Reeling Phase
     public void TakeDamage(float damage, float rate)
     {
         float actualDamage = Mathf.Ceil(damage/fs.armorLevel);
+        
         DamagePopup.Create(transform.position, actualDamage,rate);
         health -= actualDamage;
     }
 
-    private void StrugglingHeavy() //catching phase
+    //catching phase
+    private void Struggling_PullingPlayer() 
     {
         RunFromPlayer();
 
         if (health <=0)
-        {
             GetStunned();
-        }
     }
 
+    private void Struggling_PlayerStronger() 
+    {
+        FightAgainstPlayer();
+        if (health <= 0)
+            GetStunned();
+    }
     private void GetStunned()
     {
         col.isTrigger = false;
@@ -247,11 +299,19 @@ public class FishController : MonoBehaviour
     #endregion
 
     #region Public Hooking Functions
-    public void Hooked()
+    public void Hooked(float weightCompare)
     {
         col.isTrigger = true;
         rb.velocity = Vector3.zero;
-        state = FishState.StruggleHeavy;
+        if (weightCompare< weight)
+        {
+            state = FishState.Struggle_Overweight;
+        }
+        else if (weightCompare>= weight)
+        {
+            state = FishState.Struggle_Underweight;
+        }
+        
     }
 
     public void Released()
@@ -259,6 +319,7 @@ public class FishController : MonoBehaviour
         if (health > 0)
         {
             col.isTrigger = false;
+            rb.velocity = Vector3.zero;
             rb.rotation = Quaternion.identity;
             state = FishState.Swim;
         }
@@ -270,19 +331,25 @@ public class FishController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Vector3 dir = (transform.position - collision.transform.position).normalized * 10;
-        velocity += dir  * Time.deltaTime;
+        Vector3 dir = (transform.position - collision.transform.position).normalized * 100;
+        velocity+=(dir * Time.deltaTime);
     }
     private void OnTriggerEnter(Collider other)
     {
 
-        if (state == FishState.Caught)
+        if (state == FishState.Caught||state == FishState.Stunned)
         {
             if (other.tag == "Player")
             {
-                rb.velocity = Vector3.zero;
-                gameObject.SetActive(false);
-                col.isTrigger = false;
+                Backpack pack = other.GetComponent<FishingPlayerCharacterController>().bp;
+                if (pack.currentFishAmount <pack.fishInventoryLimit)
+                {
+                    other.GetComponent<FishingPlayerCharacterController>().bp.AddFish(fs.fishName, weight, model.transform.localScale.x);
+                    rb.velocity = Vector3.zero;
+                    gameObject.SetActive(false);
+                    col.isTrigger = false;
+                }
+
             }
         }
     }

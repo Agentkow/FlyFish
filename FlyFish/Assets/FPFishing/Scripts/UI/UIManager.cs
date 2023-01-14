@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         mState = MinigameState.Left;
+        fpcc = GameObject.Find("Player").GetComponent<FishingPlayerCharacterController>();
         canHook = true;
     }
     // Update is called once per frame
@@ -45,7 +46,7 @@ public class UIManager : MonoBehaviour
                 break;
         }
 
-        hookTicker.fillAmount += tickerValue * Time.deltaTime;
+        hookTicker.fillAmount += tickerValue * Time.fixedDeltaTime;
         if (hookTicker.fillAmount>= 1 && !canHook)
             canHook = true;
     }
@@ -74,12 +75,12 @@ public class UIManager : MonoBehaviour
         switch (mState)
         {
             case MinigameState.Left:
-                miniGameSlider.value += slideSpeed;
+                miniGameSlider.value += slideSpeed * Time.deltaTime;
                 if (miniGameSlider.value>=miniGameSlider.maxValue)
                     mState = MinigameState.Right;
                 break;
             case MinigameState.Right:
-                miniGameSlider.value -= slideSpeed;
+                miniGameSlider.value -= slideSpeed * Time.deltaTime;
                 if (miniGameSlider.value <= miniGameSlider.minValue)
                     mState = MinigameState.Left;
                 break;

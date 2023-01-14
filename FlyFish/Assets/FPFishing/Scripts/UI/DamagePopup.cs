@@ -9,20 +9,27 @@ public class DamagePopup : MonoBehaviour
     [SerializeField] private TextMeshPro damageText;
     [SerializeField] private float timeMax = 5;
     [SerializeField] private Color textColor;
+    [SerializeField] private float damageCheck;
     private float disappearTimer;
     public static GameObject Create (Vector3 position, float damageAmount, float rate) //spawn damage popup from GameAssets
     {
-        GameObject popup = ObjectPool.pool.GetDamageObject();
-        popup.transform.position = position;
-        DamagePopup damagePopup = popup.GetComponent<DamagePopup>();
-        damagePopup.Setup(damageAmount, rate);
+        if (ObjectPool.pool.GetDamageObject() !=null)
+        {
+            GameObject popup = ObjectPool.pool.GetDamageObject();
+            popup.transform.position = position;
+            DamagePopup damagePopup = popup.GetComponent<DamagePopup>();
+            damagePopup.Setup(damageAmount, rate);
+
+            popup.SetActive(true);
+            return popup;
+        }
+        return null;
         
-        popup.SetActive(true);
-        return popup;
     }
 
     public void Setup(float damageAmount, float damageRate) // set up damage popup
     {
+        
         disappearTimer = timeMax;
         damageText.text = damageAmount.ToString("F0");
         if (damageAmount<=damageRate) // weak damage
@@ -40,7 +47,7 @@ public class DamagePopup : MonoBehaviour
             damageText.fontSize = 10;
             textColor = new Color(255, 0, 0);
         }
-
+        damageCheck = damageAmount;
         damageText.color = textColor;
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a25699082f76f40857387a07f992de, type: 3}
   m_Name: StarterHook
   m_EditorClassIdentifier: 
-  damage: 1
-  flySpeed: 10000
+  damage: 2
+  flySpeed: 2000
   tension: 2
-  range: 20
+  armorPenetrationLevel: 2
