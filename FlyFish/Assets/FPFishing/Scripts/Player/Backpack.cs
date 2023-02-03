@@ -12,15 +12,16 @@ public class Backpack : ScriptableObject
     [SerializeField] private List<BackpackSlot> fishContainer = new List<BackpackSlot>();
 
 
-    public void AddFish(string name, float _weight, float _size)
+    public void AddFish(string name, float _weight, float _size, FishStats stats)
     {
-        fishContainer.Add(new BackpackSlot(name, _weight, _size));
+        fishContainer.Add(new BackpackSlot(name, _weight, _size, stats));
         currentFishAmount = fishContainer.Count;
     }
 
     public void ClearBackpack()
     {
         fishContainer.Clear();
+        currentFishAmount = fishContainer.Count;
     }
 
 }
@@ -31,10 +32,12 @@ public class BackpackSlot
     public string fishName = "Fish";
     public float weight;
     public float size;
-    public BackpackSlot(string name, float _weight, float _size)
+    public FishStats fs;
+    public BackpackSlot(string name, float _weight, float _size, FishStats stats)
     {
         fishName = name;
         weight = (Mathf.Round(_weight * 100))/100;
         size = (Mathf.Round(_size * 100)) / 100;
+        fs = stats;
     }
 }

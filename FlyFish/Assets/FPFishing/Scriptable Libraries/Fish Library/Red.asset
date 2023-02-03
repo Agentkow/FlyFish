@@ -24,7 +24,7 @@ MonoBehaviour:
   territorialness: 1
   model: {fileID: 4618277161959616375, guid: c80d2feb8380f504096370fccc272fb0, type: 3}
   minSpeed: 2
-  maxSpeed: 8
+  maxSpeed: 7
   perceptionRadius: 2.5
   avoidanceRadius: 1
   maxSteerForce: 3
@@ -32,6 +32,6 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 5952
-  boundsRadius: 4
+  boundsRadius: 5
   avoidCollisionWeight: 5
   collisionAvoidDst: 5

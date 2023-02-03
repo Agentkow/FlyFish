@@ -23,7 +23,7 @@ public class RaycastChecker : MonoBehaviour
             case FishingPlayerCharacterController.PlayerState.Normal:
                 if (Physics.Raycast(transform.position, cam.transform.forward, out RaycastHit hit, layer))
                 {
-                    Debug.Log(hit.transform.gameObject.name);
+                    //Debug.Log(hit.transform.gameObject.name);
                     if ( hit.collider.transform.gameObject.layer == 9 || 
                          hit.collider.transform.gameObject.layer == 8)
                     {

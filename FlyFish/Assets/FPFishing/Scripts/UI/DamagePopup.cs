@@ -54,7 +54,8 @@ public class DamagePopup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(Camera.main.transform.position);
+        Vector3 lookAt = new Vector3(Camera.main.transform.position.x,transform.position.y, Camera.main.transform.position.z);
+        transform.LookAt(lookAt);
         transform.position += new Vector3(0, 10f)*Time.deltaTime;
         damageText.fontSize = Vector3.Distance(transform.position, Camera.main.transform.position);
         disappearTimer -= Time.deltaTime;

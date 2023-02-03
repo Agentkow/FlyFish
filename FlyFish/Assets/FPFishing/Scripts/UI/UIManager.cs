@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    private FishingPlayerCharacterController fpcc;
     [Header("Plug inspector")]
-    [SerializeField] private FishingPlayerCharacterController fpcc;
+    [SerializeField] private GameManager gm;
     [SerializeField] private GameObject miniGameUI;
+    [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Slider miniGameSlider;
     [SerializeField] private Image hookTicker;
     
@@ -23,13 +25,16 @@ public class UIManager : MonoBehaviour
 
     public enum MinigameState
     {
+        Base,
+        Pause,
         Left,
         Right
     }
 
     private void Start()
     {
-        mState = MinigameState.Left;
+        mState = MinigameState.Base;
+        Cursor.lockState = CursorLockMode.Locked;
         fpcc = GameObject.Find("Player").GetComponent<FishingPlayerCharacterController>();
         canHook = true;
     }
@@ -41,14 +46,32 @@ public class UIManager : MonoBehaviour
             case FishingPlayerCharacterController.PlayerState.Catch:
                 MinigameRun();
                 sliderVal = miniGameSlider.value;
+                hookTicker.fillAmount += tickerValue * Time.fixedDeltaTime;
+                if (hookTicker.fillAmount >= 1 && !canHook)
+                    canHook = true;
                 break;
             default:
                 break;
         }
 
-        hookTicker.fillAmount += tickerValue * Time.fixedDeltaTime;
-        if (hookTicker.fillAmount>= 1 && !canHook)
-            canHook = true;
+        if (PauseInput())
+        {
+            if (Time.timeScale != 0)
+                Pause();
+
+        }
+    }
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+    }
+    public void UnPause()
+    {
+        pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
     }
 
     public void ResetTicker()
@@ -61,12 +84,13 @@ public class UIManager : MonoBehaviour
     public void StartFishingMinigame()
     {
         miniGameUI.gameObject.SetActive(true);
+        mState = MinigameState.Left;
     }
 
     public void EndFishingMinigame()
     {
         miniGameSlider.value = 0;
-        mState = MinigameState.Left;
+        mState = MinigameState.Base;
         miniGameUI.gameObject.SetActive(false);
     }
 
@@ -87,4 +111,9 @@ public class UIManager : MonoBehaviour
         }
     }
     #endregion
+
+    private bool PauseInput()
+    {
+        return Input.GetButtonDown("Cancel");
+    }
 }

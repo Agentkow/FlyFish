@@ -23,6 +23,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
     [SerializeField] private GameObject hook;
     [SerializeField] private GameObject hookPos;
     [SerializeField] private CableComponent cabComp;
+    [SerializeField] private TrailRenderer hookTrail;
     [SerializeField] private Hook hookInfo;
     [SerializeField] private HookEquipment e_Hook;
     [SerializeField] private PoleEquipment e_Pole;
@@ -64,40 +65,43 @@ public class FishingPlayerCharacterController : MonoBehaviour
         cam = transform.Find("Main Camera").GetComponent<Camera>();
         knockBackCount = 0;
         ui.EndFishingMinigame();
-        Cursor.lockState = CursorLockMode.Locked;
         range = e_Pole.lineRange;
-
+        hookTrail.enabled = false;
     }
    
     void Update()
     {
-        switch (state)
+        if (Time.timeScale!=0)
         {
-            case PlayerState.Normal:
-                HandleCharacterLook();
-                HandleCharacterMovement();
-                HookStart();
-                break;
-            case PlayerState.Throw:
-                HookThrow();
-                break;
-            case PlayerState.Fly:
-                HandleCharacterLook();
-                HookshotMove();
-                break;
-            case PlayerState.Catch:
-                CatchMove();
-                CatchRotate();
-                CatchingFish();
-                break;
-            case PlayerState.Pulling:
-                CatchRotate();
-                CatchPulling();
-                break;
-            case PlayerState.Return:
-                CallbackHook();
-                break;
+            switch (state)
+            {
+                case PlayerState.Normal:
+                    HandleCharacterLook();
+                    HandleCharacterMovement();
+                    HookStart();
+                    break;
+                case PlayerState.Throw:
+                    HookThrow();
+                    break;
+                case PlayerState.Fly:
+                    HandleCharacterLook();
+                    HookshotMove();
+                    break;
+                case PlayerState.Catch:
+                    CatchMove();
+                    CatchRotate();
+                    CatchingFish();
+                    break;
+                case PlayerState.Pulling:
+                    CatchRotate();
+                    CatchPulling();
+                    break;
+                case PlayerState.Return:
+                    CallbackHook();
+                    break;
+            }
         }
+        
 
     }
     #region Base Controls
@@ -184,6 +188,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
             HookRelease();
             cabComp.TurnOnLine();
             hook.transform.parent = null;
+            hookTrail.enabled = true;
             state = PlayerState.Throw;
         }
     }
@@ -507,16 +512,11 @@ public class FishingPlayerCharacterController : MonoBehaviour
     {
         
         Vector3 dir = (hookPos.transform.position - hook.transform.position).normalized;
-        hook.GetComponent<Rigidbody>().velocity = dir * (e_Hook.flySpeed*2)* Time.fixedDeltaTime;
+        hook.GetComponent<Rigidbody>().velocity = dir * (e_Hook.flySpeed*1.5f)* Time.fixedDeltaTime;
 
-        if (Vector3.Distance(hook.transform.position, hookPos.transform.position) < hookLeway) // when player gets close to grapple point
+        if (Vector3.Distance(hook.transform.position, hookPos.transform.position) < 1) // when player gets close to grapple point
         {
-            hookInfo.ResetHook();
-            cabComp.TurnOffLine();
-            hook.transform.parent = hookPos.transform;
-            hook.transform.position = hookPos.transform.position;
-            HookStick();
-            state = PlayerState.Normal;
+            ReturnHook();
         }
 
     }
@@ -543,6 +543,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
     private void HookStick() //hook sticks to object
     {
         hookRB.isKinematic = true;
+        hookTrail.enabled = false;
         hook.transform.localRotation = Quaternion.identity;
         hookRB.collisionDetectionMode = CollisionDetectionMode.Discrete;
     }
@@ -550,6 +551,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
     private void HookRelease() // hook releases from object
     {
         hookRB.isKinematic = false;
+        hookTrail.enabled = true;
         hookRB.collisionDetectionMode = CollisionDetectionMode.Discrete;
     }
     #endregion

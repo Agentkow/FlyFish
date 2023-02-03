@@ -106,25 +106,26 @@ public class FishController : MonoBehaviour
     {
         Vector3 acceleration = Vector3.zero;
 
-        //go to next random waypoint
+        
         if (Vector3.Distance(nextPoint.position, transform.position) < 1f)
         {
             rb.rotation = Quaternion.identity;
             nextPoint = RandomWaypoint();
         }
 
-        if (target != null)
+        if (target != null) //go to next random waypoint
         {
             Vector3 offsetToTarget = (target.position - position);
             acceleration = SteerTowards(offsetToTarget) * fs.targetWeight;
         }
 
-        if (IsHeadingForCollision())
+        if (IsHeadingForCollision()) //if obstacle detected
         {
             Vector3 collisionAvoidDir = ObstacleRays();
             Vector3 collisionAvoidForce = SteerTowards(collisionAvoidDir) * fs.avoidCollisionWeight;
-            acceleration += collisionAvoidForce;
+            acceleration += collisionAvoidForce; //move away from obstacle
         }
+
         acceleration += (nextPoint.position - transform.position).normalized * fs.territorialness;
 
         velocity += acceleration * Time.deltaTime;
@@ -157,7 +158,7 @@ public class FishController : MonoBehaviour
 
         return forward;
     }
-    bool IsHeadingForCollision()
+    bool IsHeadingForCollision() //obstacle detection
     {
         RaycastHit hit;
         if (Physics.SphereCast(position, fs.boundsRadius, forward, out hit, fs.collisionAvoidDst, fs.obstacleMask))
@@ -218,7 +219,7 @@ public class FishController : MonoBehaviour
         if (IsHeadingForCollision())
         {
             Vector3 collisionAvoidDir = ObstacleRays();
-            Vector3 collisionAvoidForce = SteerTowards(collisionAvoidDir) * fs.avoidCollisionWeight;
+            Vector3 collisionAvoidForce = SteerTowards(collisionAvoidDir) * fs.avoidCollisionWeight * 2;
             acceleration += collisionAvoidForce;
         }
 
@@ -279,6 +280,7 @@ public class FishController : MonoBehaviour
     {
         col.isTrigger = false;
         rb.velocity = Vector3.zero;
+        rb.useGravity = true;
         rb.AddForce(transform.up * 10);
         state = FishState.Stunned;
     }
@@ -344,7 +346,7 @@ public class FishController : MonoBehaviour
                 Backpack pack = other.GetComponent<FishingPlayerCharacterController>().bp;
                 if (pack.currentFishAmount <pack.fishInventoryLimit)
                 {
-                    other.GetComponent<FishingPlayerCharacterController>().bp.AddFish(fs.fishName, weight, model.transform.localScale.x);
+                    other.GetComponent<FishingPlayerCharacterController>().bp.AddFish(fs.fishName, weight, model.transform.localScale.x, fs);
                     rb.velocity = Vector3.zero;
                     gameObject.SetActive(false);
                     col.isTrigger = false;
