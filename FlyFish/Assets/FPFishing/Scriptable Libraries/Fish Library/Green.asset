@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishName: Brigid Greenback
   rarity: 0
+  value: 75
   maxHealth: 8
   weightRange: 15
   radiusRange: 0.72
@@ -35,3 +36,12 @@ MonoBehaviour:
   boundsRadius: 7
   avoidCollisionWeight: 3
   collisionAvoidDst: 7
+  strikeRangeVisual:
+  - {x: 103.25, y: 126.58}
+  breakRangeVisual:
+  - {x: 235, y: 126.58}
+  sliderSpeed: 391.5
+  strikeRange:
+  - {x: 404, y: 481}
+  breakRange:
+  - {x: 481, y: 522}

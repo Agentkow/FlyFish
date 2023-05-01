@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: StarterPole
   m_EditorClassIdentifier: 
   poleName: pole
+  spareHooks: 10
   weightRange: 10
   lineRange: 30
+  ticker: 0.5

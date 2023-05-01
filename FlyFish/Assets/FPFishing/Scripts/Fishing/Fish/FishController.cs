@@ -16,12 +16,15 @@ public class FishController : MonoBehaviour
     [SerializeField] private Vector3 position;
     [SerializeField] private Vector3 forward;
     [SerializeField] private float health;
+    [SerializeField] private ParticleSystem sweat;
+    [SerializeField] private ParticleSystem stun;
 
     [field: SerializeField] public float weight { get; private set; }
     [field: SerializeField] public Vector3 velocity { get; private set; }
 
     private Transform cacheTransform;
     private Transform target;
+    
     
     private Rigidbody rb;
     [field: SerializeField] public FishState state { get; private set; }
@@ -50,10 +53,18 @@ public class FishController : MonoBehaviour
         position = cacheTransform.position;
         forward = cacheTransform.forward;
         col = GetComponent<CapsuleCollider>();
+
     }
+
+    public FishStats GetFishStats()
+    {
+        return fs;
+    }
+
     public void Initialize(List<Transform> points) // called by spawner: sets territory
     {
         state = FishState.Swim;
+        gameObject.name = fs.fishName;
         health = fs.maxHealth;
         wayPoints = points;
         float randSize = (fs.weightRange + Random.Range(-fs.minSpeed, fs.maxSpeed)) * 0.1f;
@@ -63,6 +74,8 @@ public class FishController : MonoBehaviour
         col.height = fs.heightRange + (randomizer * 0.1f);
         weight = fs.weightRange + randomizer;
         nextPoint = RandomWaypoint();
+        StopSweat();
+        StopStun();
     }
     private void Start()
     {
@@ -77,6 +90,7 @@ public class FishController : MonoBehaviour
         Transform RandomWaypoint = wayPoints[rand].transform;
         return RandomWaypoint;
     }
+
     void Update()
     {
         switch (state)
@@ -182,6 +196,7 @@ public class FishController : MonoBehaviour
 
     #endregion
 
+    #region Minigame phase
     private void RunFromPlayer()
     {
         Vector3 acceleration = Vector3.zero;
@@ -224,13 +239,9 @@ public class FishController : MonoBehaviour
         }
 
         if (transform.position.y>=playerPos.transform.position.y)
-        {
             acceleration += (new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10))) * 5;
-        }
         else
-        {
             acceleration += (new Vector3(Random.Range(-10, 10), Random.Range(0, 10), Random.Range(-10, 10))) * 5;
-        }
         
 
         velocity += acceleration * Time.deltaTime;
@@ -245,7 +256,7 @@ public class FishController : MonoBehaviour
         forward = dir;
 
     }
-
+    #endregion
     private void SlowDown()
     {
         Vector3 move = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime);
@@ -281,6 +292,7 @@ public class FishController : MonoBehaviour
         col.isTrigger = false;
         rb.velocity = Vector3.zero;
         rb.useGravity = true;
+        StartStun();
         rb.AddForce(transform.up * 10);
         state = FishState.Stunned;
     }
@@ -296,6 +308,7 @@ public class FishController : MonoBehaviour
     private void Catching()
     {
         Vector3 dir = (playerPos.transform.position - transform.position).normalized;
+        rb.useGravity = false;
         rb.velocity = dir * 5000f * Time.deltaTime;
     }
     #endregion
@@ -331,6 +344,14 @@ public class FishController : MonoBehaviour
     }
     #endregion
 
+    #region VFX
+    public void StartSweat()=>sweat.Play();
+    public void StopSweat() => sweat.Stop();
+
+    public void StartStun() => stun.Play();
+    public void StopStun() => stun.Stop();
+
+    #endregion
     private void OnCollisionEnter(Collision collision)
     {
         Vector3 dir = (transform.position - collision.transform.position).normalized * 100;
@@ -343,13 +364,14 @@ public class FishController : MonoBehaviour
         {
             if (other.tag == "Player")
             {
-                Backpack pack = other.GetComponent<FishingPlayerCharacterController>().bp;
+                Inventory pack = other.GetComponent<FishingPlayerCharacterController>().bp;
                 if (pack.currentFishAmount <pack.fishInventoryLimit)
                 {
                     other.GetComponent<FishingPlayerCharacterController>().bp.AddFish(fs.fishName, weight, model.transform.localScale.x, fs);
                     rb.velocity = Vector3.zero;
                     gameObject.SetActive(false);
                     col.isTrigger = false;
+                    StopStun();
                 }
 
             }

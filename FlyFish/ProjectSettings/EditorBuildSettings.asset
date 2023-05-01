@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/FPFishing/Scenes/Main Menu.unity
+    guid: 765771fbd157edd4c9cac78d946bc39b
+  - enabled: 1
+    path: Assets/FPFishing/Scenes/Hub.unity
+    guid: 9680eb0b899a61846a275c1e5e5c88d2
+  - enabled: 1
+    path: Assets/FPFishing/Scenes/Island.unity
+    guid: 7817902b78f52384eb4d3d6301e1919b
   m_configObjects: {}

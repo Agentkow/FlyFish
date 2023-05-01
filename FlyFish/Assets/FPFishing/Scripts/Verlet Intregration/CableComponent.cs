@@ -6,7 +6,7 @@ using System.Collections;
 public class CableComponent : MonoBehaviour
 {
 	#region Class members
-
+#pragma warning disable 0414
 	[SerializeField] private Transform endPoint;
 	[SerializeField] private Material cableMaterial;
 

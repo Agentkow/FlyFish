@@ -20,6 +20,7 @@
 	}
 		SubShader
 		{
+			Cull off
 			Pass
 			{
 				// Setup our pass to use Forward rendering, and only receive

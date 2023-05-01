@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Treasure : MonoBehaviour
 {
+#pragma warning disable 0414
     [SerializeField] private float value = 100f;
 
     public void Initialize()

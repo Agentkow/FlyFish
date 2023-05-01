@@ -5,36 +5,24 @@ using UnityEngine;
 public class FishSpawner : MonoBehaviour
 {
 
-    [SerializeField] private List<Transform> waypoints;
+    [SerializeField] private List<Transform> commonFishWayPoints;
+    [SerializeField] private List<Transform> rareFishWayPoints;
     [SerializeField] private float spawnRadius = 10;
-    [field: SerializeField] public ObjectPool.FishType typeOfFishSpawner { get; private set; }
 
-    private void Start()
+    public void SpawnFish(ObjectPool.FishType typeOfFishSpawner)
     {
-        while (ObjectPool.pool.GetFish(typeOfFishSpawner) != null)
-        {
-            SpawnFish();
-        }
-            
-    }
-
-    private void Update()
-    {
-        if (FireInput())
-            SpawnFish();
-
-    }
-
-    public void SpawnFish()
-    {
-        Vector3 pos = transform.position + Random.insideUnitSphere * spawnRadius;
+        Vector3 pos = transform.position + Random.insideUnitSphere * spawnRadius; //gets a random spawn position
         GameObject fishPrefab = ObjectPool.pool.GetFish(typeOfFishSpawner);
         if (fishPrefab!= null)
         {
             FishController fish = fishPrefab.GetComponent<FishController>();
             fishPrefab.SetActive(true);
             fishPrefab.transform.position = pos;
-            fish.Initialize(waypoints);
+            if (fish.GetFishStats().rarity == FishStats.FishTypeSpawn.Common)
+                fish.Initialize(commonFishWayPoints);
+            else if (fish.GetFishStats().rarity == FishStats.FishTypeSpawn.Rare)
+                fish.Initialize(rareFishWayPoints);
+
             fishPrefab.transform.forward = Random.insideUnitSphere * spawnRadius;
         }
         

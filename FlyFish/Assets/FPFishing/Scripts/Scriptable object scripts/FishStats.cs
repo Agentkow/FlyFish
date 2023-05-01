@@ -11,8 +11,10 @@ public class FishStats : ScriptableObject
         Rare
     }
 
+    [Header("Base Stats")]
     public string fishName = "Fish";
     public FishTypeSpawn rarity;
+    public float value;
     public float maxHealth;
     public float weightRange;
     public float radiusRange;
@@ -38,4 +40,11 @@ public class FishStats : ScriptableObject
     public float avoidCollisionWeight = 10;
     public float collisionAvoidDst = 5;
     #endregion
+
+    [Header("Minigame stats")]
+    public List<Vector2> strikeRangeVisual;
+    public List<Vector2> breakRangeVisual;
+    public float sliderSpeed;
+    public List<Vector2> strikeRange;
+    public List<Vector2> breakRange;
 }

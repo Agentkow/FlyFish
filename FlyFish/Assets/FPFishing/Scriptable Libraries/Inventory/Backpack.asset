@@ -14,11 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <wallet>k__BackingField: 0
   <fishInventoryLimit>k__BackingField: 10
-  <currentFishAmount>k__BackingField: 2
-  fishContainer:
-  - fishName: Wind Sail Beta
-    weight: 9.66
-    size: 1.47
-  - fishName: Soaring Tuna
-    weight: 9.47
-    size: 1.33
+  <currentFishAmount>k__BackingField: 0
+  fishContainer: []

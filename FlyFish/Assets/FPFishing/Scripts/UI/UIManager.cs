@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,13 +13,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Slider miniGameSlider;
     [SerializeField] private Image hookTicker;
-    
+    [SerializeField] private TextMeshProUGUI hookNumText;
+    [SerializeField] private RectTransform greenZone;
+    [SerializeField] private RectTransform redZone;
+
     [SerializeField] private MinigameState mState;
 
     [Header("Values")]
     [SerializeField] private float slideSpeed = 20f;
     [field: SerializeField] public float minTargetRange { get; private set; }
     [field: SerializeField] public float maxTargetRange { get; private set; }
+    [field: SerializeField] public float minBreakRange { get; private set; }
+    [field: SerializeField] public float maxBreakRange { get; private set; }
+
     [field: SerializeField] public float sliderVal { get; private set; }
     [field: SerializeField] public float tickerValue { get; private set; }
     [field: SerializeField] public bool canHook { get; private set; }
@@ -30,12 +37,16 @@ public class UIManager : MonoBehaviour
         Left,
         Right
     }
-
+    public void SetTicker(float value)
+    {
+        tickerValue = value;
+    }
     private void Start()
     {
         mState = MinigameState.Base;
         Cursor.lockState = CursorLockMode.Locked;
         fpcc = GameObject.Find("Player").GetComponent<FishingPlayerCharacterController>();
+        
         canHook = true;
     }
     // Update is called once per frame
@@ -61,6 +72,7 @@ public class UIManager : MonoBehaviour
 
         }
     }
+    #region Pausing
     public void Pause()
     {
         pauseMenu.SetActive(true);
@@ -74,6 +86,11 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private bool PauseInput()
+    {
+        return Input.GetButtonDown("Cancel");
+    }
+    #endregion
     public void ResetTicker()
     {
         hookTicker.fillAmount = 0;
@@ -81,10 +98,30 @@ public class UIManager : MonoBehaviour
     }
 
     #region Minigame Slider
-    public void StartFishingMinigame()
+
+    public void StartFishingMinigame(FishStats fs)
     {
+        SetUpMinigame(fs);
         miniGameUI.gameObject.SetActive(true);
         mState = MinigameState.Left;
+    }
+
+    void SetUpMinigame(FishStats fs)
+    {
+        for (int i = 0; i < fs.strikeRange.Count; i++)
+        {
+            greenZone.anchoredPosition = new Vector3(fs.strikeRangeVisual[i].x,1,0);
+            greenZone.sizeDelta = new Vector2(fs.strikeRangeVisual[i].y, greenZone.sizeDelta.y);
+            minTargetRange = fs.strikeRange[i].x;
+            maxTargetRange = fs.strikeRange[i].y;
+
+            redZone.anchoredPosition = new Vector3(fs.breakRangeVisual[i].x, 1, 0);
+            redZone.sizeDelta = new Vector2(fs.breakRangeVisual[i].y, redZone.sizeDelta.y);
+            minBreakRange = fs.breakRange[i].x;
+            maxBreakRange = fs.breakRange[i].y;
+        }
+        slideSpeed = fs.sliderSpeed;
+        
     }
 
     public void EndFishingMinigame()
@@ -112,8 +149,32 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    private bool PauseInput()
+    #region Go back to Hub
+    public void ReturnToMenu()
     {
-        return Input.GetButtonDown("Cancel");
+        GameManager.gm.GoToHub();
+    }
+    public void RetreatToMenu()
+    {
+        GameManager.gm.currentInv.ClearBackpack();
+        GameManager.gm.GoToHub();
+    }
+    #endregion
+
+    public void UpdateHookNum(int hookNum)
+    {
+        if (hookNum > 0)
+            hookNumText.text = hookNum.ToString();
+        else
+            hookNumText.text = "Out";
+    }
+
+    public void CloseGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
     }
 }

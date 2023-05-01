@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishName: Wind Sail Beta
   rarity: 0
+  value: 55
   maxHealth: 6
-  weightRange: 10
+  weightRange: 4
   radiusRange: 0.3
   heightRange: 2.5
   minRandom: 0.5
@@ -35,3 +36,12 @@ MonoBehaviour:
   boundsRadius: 5
   avoidCollisionWeight: 5
   collisionAvoidDst: 5
+  strikeRangeVisual:
+  - {x: 123.48, y: 167.03}
+  breakRangeVisual:
+  - {x: 235, y: 56}
+  sliderSpeed: 391.5
+  strikeRange:
+  - {x: 522, y: 503}
+  breakRange:
+  - {x: 503, y: 522}

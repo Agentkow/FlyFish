@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishName: Soaring Tuna
   rarity: 0
+  value: 25
   maxHealth: 5
-  weightRange: 10
+  weightRange: 8
   radiusRange: 0.5
   heightRange: 2
   minRandom: 1
-  maxRandom: 1
+  maxRandom: 2
   armorLevel: 2
   territorialness: 0.8
   model: {fileID: 4618277161959616375, guid: 2c95c7adc0969924e9ba3faaf55279aa, type: 3}
@@ -35,3 +36,12 @@ MonoBehaviour:
   boundsRadius: 5
   avoidCollisionWeight: 4
   collisionAvoidDst: 5
+  strikeRangeVisual:
+  - {x: 123.48, y: 167.03}
+  breakRangeVisual:
+  - {x: 235, y: 56}
+  sliderSpeed: 391.5
+  strikeRange:
+  - {x: 522, y: 503}
+  breakRange:
+  - {x: 503, y: 522}

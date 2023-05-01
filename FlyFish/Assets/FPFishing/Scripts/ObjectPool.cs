@@ -7,7 +7,7 @@ public class ObjectPool : MonoBehaviour
 {
     [field: SerializeField] public static ObjectPool pool { get; private set; }
 
-    public enum FishType { common, rare, boss}
+    public enum FishType {common, rare, boss}
     [System.Serializable] public class PoolItemGroup
     {
         public FishType typeOfFish;
@@ -18,6 +18,7 @@ public class ObjectPool : MonoBehaviour
 
     [Header("Object Lists")]
     [SerializeField] private List<GameObject> damageObjects;
+    [SerializeField] private List<GameObject> breakSparkObjects;
     [SerializeField] private List<PoolItemGroup> allFishObjects;
 
     [Header("Values")]
@@ -27,19 +28,15 @@ public class ObjectPool : MonoBehaviour
     private void Awake()
     {
         pool = this;
+        SetDamagePopups();
+        SetFishList();
+        SetBreakPopups();
     }
 
     public void Initialize(List<FishStats> common, List<FishStats> rare)
     {
         commonFishList = common;
         rareFishList = rare;
-        SetDamagePopups();
-        SetFishList();
-    }
-
-    private void Start()
-    {
-        //temp
         SetDamagePopups();
         SetFishList();
     }
@@ -66,10 +63,27 @@ public class ObjectPool : MonoBehaviour
                 }
             }
         }
+
+        List<GameObject> rareFishObjects = new List<GameObject>();
+        if (rareFishList.Count>0)
+        {
+            for (int f = 0; f < rareFishList.Count; f++)
+            {
+                for (int i = 0; i < poolAmount/5; i++) //fish pool
+                {
+                    fish = Instantiate(GameAssets.i.fish.gameObject);
+                    FishController fsh = fish.GetComponent<FishController>();
+                    fish.transform.parent = holder.transform;
+                    fish.SetActive(false);
+                    rareFishObjects.Add(fish);
+                    fsh.Setup(rareFishList[f], null);
+                }
+            }
+        }
         
 
         allFishObjects.Add(new PoolItemGroup() { typeOfFish = FishType.common, fishPrefab = commonFishObjects });
-
+        allFishObjects.Add(new PoolItemGroup() { typeOfFish = FishType.rare, fishPrefab = rareFishObjects });
 
 
     }
@@ -85,11 +99,22 @@ public class ObjectPool : MonoBehaviour
             input.SetActive(false);
             damageObjects.Add(input);
         }
-
-        
+    }
+    private void SetBreakPopups()
+    {
+        GameObject holder = AddHolder(GameAssets.i.breakSpark, transform);
+        breakSparkObjects = new List<GameObject>();
+        GameObject input;
+        for (int i = 0; i < poolAmount; i++) //break line popup pool
+        {
+            input = Instantiate(GameAssets.i.breakSpark);
+            input.transform.parent = holder.transform;
+            input.SetActive(false);
+            breakSparkObjects.Add(input);
+        }
     }
 
-    GameObject AddHolder(GameObject go, Transform pooledObjectHolderTransform)
+    GameObject AddHolder(GameObject go, Transform pooledObjectHolderTransform) //adds the fish to a game object for organization
     {
         if (pooledObjectHolderTransform.Find(go.name + "Holder") == null)
         {
@@ -115,25 +140,33 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 
-    public PoolItemGroup GetPoolForFishTypes(FishType T)
+    public GameObject GetBreakObject() //gets the next available break spark popup
     {
-        return allFishObjects.First(o => o.typeOfFish == T);
+        for (int i = 0; i < poolAmount; i++)
+        {
+            if (!breakSparkObjects[i].activeInHierarchy)
+                return breakSparkObjects[i];
+        }
+        return null;
     }
 
     public GameObject GetFish(FishType t) //gets next randomly available fish
     {
         var pfs = GetPoolForFishTypes(t).fishPrefab;
+        
         for (int i = 0; i < pfs.Count; i++)
         {
             if (!pfs[i].activeInHierarchy)
-            {
                 return pfs[i];
-            }
         }
         return null;
-       
-        //return pfs.ElementAt(Random.Range(0, pfs.Count));
     }
+    public PoolItemGroup GetPoolForFishTypes(FishType rarity) => allFishObjects.FirstOrDefault(o => o.typeOfFish == rarity);
 
     #endregion
+
+    public float GetCount()
+    {
+        return allFishObjects.Sum(o => o.fishPrefab.Count);
+    }
 }

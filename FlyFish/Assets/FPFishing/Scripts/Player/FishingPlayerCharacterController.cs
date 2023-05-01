@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class FishingPlayerCharacterController : MonoBehaviour
 {
+//#pragma warning disable 0414
     [Header("Camera")]
     [SerializeField] private float mouseSensitivity = 1f;
     [SerializeField] private float camVertAngle;
 
     [Header("Movement")]
+    [SerializeField] private float mSpeed;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sprintSpeed = 10f;
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float gravity = -20f;
+    [SerializeField] private float gravMod = 0.1f;
     [SerializeField] private Vector3 charVelocity;
 
     [Header("Grappling hook")]
@@ -25,12 +28,15 @@ public class FishingPlayerCharacterController : MonoBehaviour
     [SerializeField] private CableComponent cabComp;
     [SerializeField] private TrailRenderer hookTrail;
     [SerializeField] private Hook hookInfo;
+    [SerializeField] private UIManager ui;
+
+    [Header("Equipment")]
     [SerializeField] private HookEquipment e_Hook;
     [SerializeField] private PoleEquipment e_Pole;
-    [SerializeField] private UIManager ui;
-    [field: SerializeField] public Backpack bp { get; private set; }
+    [SerializeField] private int numOfHooks;
+    [field: SerializeField] public Inventory bp { get; private set; }
 
-    private float charVelocityY, mSpeed, knockBackCount = 0;
+    private float charVelocityY, knockBackCount = 0;
     private Camera cam;
     private Vector3 hitPos, velocityMom;
     private Rigidbody hookRB;
@@ -50,12 +56,20 @@ public class FishingPlayerCharacterController : MonoBehaviour
         Pulling,
         Return,
     }
-
-    public void Initialize(HookEquipment h, PoleEquipment p)
+    private void Awake()
+    {
+        if (GameManager.gm)
+            Initialize(GameManager.gm.currentHook, GameManager.gm.currentPole, GameManager.gm.currentInv);
+        
+    }
+    public void Initialize(HookEquipment h, PoleEquipment p, Inventory i)
     {
         e_Hook = h;
         e_Pole = p;
+        ui.SetTicker(e_Pole.ticker);
+        bp = i;
         range = p.lineRange;
+        numOfHooks = p.spareHooks;
     }
 
     private void Start()
@@ -66,7 +80,9 @@ public class FishingPlayerCharacterController : MonoBehaviour
         knockBackCount = 0;
         ui.EndFishingMinigame();
         range = e_Pole.lineRange;
+        numOfHooks = e_Pole.spareHooks;
         hookTrail.enabled = false;
+        mSpeed = moveSpeed;
     }
    
     void Update()
@@ -132,11 +148,14 @@ public class FishingPlayerCharacterController : MonoBehaviour
         {
             float moveX = Input.GetAxisRaw("Horizontal");
             float moveZ = Input.GetAxisRaw("Vertical");
+            
             if (ShiftInput())
-                mSpeed = sprintSpeed;
-            else
-                mSpeed = moveSpeed;
-
+            {
+                if (mSpeed == moveSpeed)
+                    mSpeed = sprintSpeed;
+                else
+                    mSpeed = moveSpeed;
+            }
 
             charVelocity = transform.right * moveX * mSpeed + transform.forward * moveZ * mSpeed;
             if (cc.isGrounded)
@@ -155,7 +174,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
 
 
         //apply gravity to velocity
-        charVelocityY += (gravity*0.1f) * Time.deltaTime;
+        charVelocityY += (Physics.gravity.y) * Time.deltaTime;
 
         //apply Jump to move vector
         charVelocity.y = charVelocityY;
@@ -184,12 +203,16 @@ public class FishingPlayerCharacterController : MonoBehaviour
         //start the throw
         if (HookInput())
         {
-            GetComponent<Rigidbody>().isKinematic = true;
-            HookRelease();
-            cabComp.TurnOnLine();
-            hook.transform.parent = null;
-            hookTrail.enabled = true;
-            state = PlayerState.Throw;
+            if (numOfHooks>0)
+            {
+                GetComponent<Rigidbody>().isKinematic = true;
+                HookRelease();
+                cabComp.TurnOnLine();
+                hook.transform.parent = null;
+                hookTrail.enabled = true;
+                state = PlayerState.Throw;
+            }
+            
         }
     }
     
@@ -237,7 +260,8 @@ public class FishingPlayerCharacterController : MonoBehaviour
 
                 //get the fish object
                 fish = hookInfo.hitObj.gameObject.GetComponent<FishController>();
-                ui.StartFishingMinigame();
+                ui.StartFishingMinigame(fish.GetFishStats());
+                fish.StartSweat();
                 state = PlayerState.Catch;
             }
             else if (hookInfo.hitObj.gameObject.GetComponent<FishController>().state == FishController.FishState.Stunned)
@@ -372,7 +396,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
             knockBackCount -= Time.deltaTime;
 
         //apply gravity to velocity
-        charVelocityY += (gravity * 0.1f) * Time.deltaTime;
+        charVelocityY += (gravity * gravMod) * Time.deltaTime;
 
         //apply Jump to move vector
         charVelocity.y = charVelocityY;
@@ -401,22 +425,20 @@ public class FishingPlayerCharacterController : MonoBehaviour
             if (ui.canHook)
             {
                 CameraJerk();
-                if (ui.sliderVal < ui.minTargetRange)
-                {
-                    fish.TakeDamage(e_Hook.damage * 0.2f, e_Hook.damage);
-                    //Debug.Log("weak");
-                }
-                else if (ui.sliderVal >= ui.minTargetRange && ui.sliderVal <= ui.maxTargetRange)
-                {
-                    fish.TakeDamage(e_Hook.damage * 2f, e_Hook.damage);
-                    //Debug.Log("strong");
-                }
-                else if (ui.sliderVal > ui.maxTargetRange)
+                if (ui.sliderVal > ui.minBreakRange && ui.sliderVal <ui.maxBreakRange) // break;
                 {
                     fish.TakeDamage(e_Hook.damage * 2.5f, e_Hook.damage);
-                    //Debug.Log("break");
+                    fish.StopSweat();
                     fish.Released();
                     HookBreak();
+                }
+                else if (ui.sliderVal > ui.minTargetRange && ui.sliderVal < ui.maxTargetRange) // strong;
+                {
+                    fish.TakeDamage(e_Hook.damage * 2f, e_Hook.damage);
+                }
+                else// weak;
+                {
+                    fish.TakeDamage(e_Hook.damage * 0.2f, e_Hook.damage);
                 }
                 
                 ui.ResetTicker();
@@ -427,6 +449,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
        
         if (Vector3.Distance(transform.position, fish.gameObject.transform.position)> range)// get too far from fish
         {
+            fish.StopSweat();
             fish.Released();
             HookBreak();
 
@@ -434,12 +457,14 @@ public class FishingPlayerCharacterController : MonoBehaviour
 
         if (fish.state == FishController.FishState.Stunned) // when fish is knocked out, detach hook
         {
+            fish.StopSweat();
             ResetCameraJerk();
             HookReleased();
         }
 
         if (HookInput()) //cancel catching
         {
+            fish.StopSweat();
             fish.Released();
             HookReleased();
         }
@@ -487,6 +512,9 @@ public class FishingPlayerCharacterController : MonoBehaviour
     }
     private void HookBreak() //hook snaps back
     {
+        BreakSpark.Create(hook.transform.position);
+        numOfHooks -= 1;
+        ui.UpdateHookNum(numOfHooks);
         HookRemove();
         ReturnHook();
     }
@@ -574,7 +602,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
 
     private bool ShiftInput()
     {
-        return Input.GetButton("Sprint");
+        return Input.GetButtonDown("Sprint");
     }
     #endregion
     private void ResetGravity()

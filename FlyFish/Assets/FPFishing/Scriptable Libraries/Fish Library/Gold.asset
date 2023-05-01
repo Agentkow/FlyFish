@@ -12,19 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cdbc5eb53bff47a99da59088eb8d0, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  fishName: Gold
+  fishName: Star Fish
   rarity: 1
+  value: 100
   maxHealth: 5
   weightRange: 10
   radiusRange: 0.64
-  heightRange: 1
+  heightRange: 2.5
   minRandom: 1
   maxRandom: 1
   armorLevel: 1
-  territorialness: 1
+  territorialness: 1.5
   model: {fileID: 4618277161959616375, guid: a89d41cee451e984788936942b5f40a2, type: 3}
-  minSpeed: 1
-  maxSpeed: 8
+  minSpeed: 5
+  maxSpeed: 10
   perceptionRadius: 2.5
   avoidanceRadius: 1
   maxSteerForce: 3
@@ -35,3 +36,12 @@ MonoBehaviour:
   boundsRadius: 5
   avoidCollisionWeight: 5
   collisionAvoidDst: 5
+  strikeRangeVisual:
+  - {x: 215.8495, y: 90.301}
+  breakRangeVisual:
+  - {x: -16.7155, y: 83.2289}
+  sliderSpeed: 391.5
+  strikeRange:
+  - {x: 482, y: 522}
+  breakRange:
+  - {x: 334, y: 394}

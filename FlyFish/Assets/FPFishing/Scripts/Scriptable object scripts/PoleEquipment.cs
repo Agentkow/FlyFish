@@ -6,6 +6,8 @@ using UnityEngine;
 public class PoleEquipment : ScriptableObject
 {
     public string poleName = "pole";
+    public int spareHooks = 10;
     public float weightRange;
     public float lineRange;
+    public float ticker;
 }
