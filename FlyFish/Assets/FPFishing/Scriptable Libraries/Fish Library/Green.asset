@@ -15,7 +15,7 @@ MonoBehaviour:
   fishName: Brigid Greenback
   rarity: 0
   value: 75
-  maxHealth: 8
+  maxHealth: 12
   weightRange: 15
   radiusRange: 0.72
   heightRange: 3
@@ -37,10 +37,10 @@ MonoBehaviour:
   avoidCollisionWeight: 3
   collisionAvoidDst: 7
   strikeRangeVisual:
-  - {x: 103.25, y: 126.58}
+  - {x: 103, y: 126}
   breakRangeVisual:
-  - {x: 235, y: 126.58}
-  sliderSpeed: 391.5
+  - {x: 235, y: 126}
+  sliderSpeed: 313.5
   strikeRange:
   - {x: 404, y: 481}
   breakRange:

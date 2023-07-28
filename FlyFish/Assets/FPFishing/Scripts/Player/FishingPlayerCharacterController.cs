@@ -9,10 +9,14 @@ public class FishingPlayerCharacterController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 1f;
     [SerializeField] private float camVertAngle;
 
+    [SerializeField] private bool canMove = true;
+    [SerializeField] private bool canhook = true;
+    [SerializeField] private bool canJump = true;
+
     [Header("Movement")]
     [SerializeField] private float mSpeed;
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float sprintSpeed = 10f;
+    [SerializeField] private const float moveSpeed = 5f;
+    [SerializeField] private const float sprintSpeed = 10f;
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float gravity = -20f;
     [SerializeField] private float gravMod = 0.1f;
@@ -56,12 +60,29 @@ public class FishingPlayerCharacterController : MonoBehaviour
         Pulling,
         Return,
     }
+    #region Tutorial
+    //for tutorial
+    public void StartTutorial()
+    {
+        canMove = false;
+        canhook = false;
+    }
+
+    public void StartMovement() => canMove = true;
+
+    public void StartHook() => canhook = true;
+    #endregion
+
     private void Awake()
     {
         if (GameManager.gm)
-            Initialize(GameManager.gm.currentHook, GameManager.gm.currentPole, GameManager.gm.currentInv);
-        
+            if (GameManager.gm.state == GameManager.GameState.InGame)
+                Initialize(GameManager.gm.currentHook, GameManager.gm.currentPole, GameManager.gm.currentInv);
+
+
     }
+
+
     public void Initialize(HookEquipment h, PoleEquipment p, Inventory i)
     {
         e_Hook = h;
@@ -144,11 +165,12 @@ public class FishingPlayerCharacterController : MonoBehaviour
 
     private void HandleCharacterMovement() // normal movements
     {
-        if (knockBackCount<=0)
+
+        if (knockBackCount <= 0)
         {
             float moveX = Input.GetAxisRaw("Horizontal");
             float moveZ = Input.GetAxisRaw("Vertical");
-            
+
             if (ShiftInput())
             {
                 if (mSpeed == moveSpeed)
@@ -161,7 +183,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
             if (cc.isGrounded)
             {
                 charVelocityY = 0f;
-                if (JumpInput())
+                if (JumpInput() && canJump)
                 {
                     charVelocityY = jumpSpeed;
                 }
@@ -183,6 +205,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
         charVelocity += velocityMom;
 
         //move character controller
+
         cc.Move(charVelocity * Time.deltaTime);
 
         //damp momentum
@@ -193,6 +216,8 @@ public class FishingPlayerCharacterController : MonoBehaviour
             if (velocityMom.magnitude < .01f)
                 velocityMom = Vector3.zero;
         }
+
+
     }
     #endregion
 
@@ -201,7 +226,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
     private void HookStart()
     {
         //start the throw
-        if (HookInput())
+        if (HookInput() && canhook)
         {
             if (numOfHooks>0)
             {
@@ -241,6 +266,7 @@ public class FishingPlayerCharacterController : MonoBehaviour
                 if (hookInfo.hitObj.gameObject.GetComponent<FishController>())
                     hookInfo.hitObj.gameObject.GetComponent<FishController>().Hooked(e_Pole.weightRange);
                 ResetGravity();
+                
 
                 //make a joint on hook
                 joint = hook.gameObject.AddComponent<SpringJoint>();
@@ -255,7 +281,9 @@ public class FishingPlayerCharacterController : MonoBehaviour
                 joint.massScale = 1f;
 
                 //sticks hook to fish
+                hook.transform.position = hookInfo.hitObj.transform.position;
                 hook.transform.parent = hookInfo.hitObj.transform;
+                
                 HookStick();
 
                 //get the fish object
@@ -427,14 +455,14 @@ public class FishingPlayerCharacterController : MonoBehaviour
                 CameraJerk();
                 if (ui.sliderVal > ui.minBreakRange && ui.sliderVal <ui.maxBreakRange) // break;
                 {
-                    fish.TakeDamage(e_Hook.damage * 2.5f, e_Hook.damage);
+                    fish.TakeDamage(e_Hook.damage * 2f, e_Hook.damage);
                     fish.StopSweat();
                     fish.Released();
                     HookBreak();
                 }
                 else if (ui.sliderVal > ui.minTargetRange && ui.sliderVal < ui.maxTargetRange) // strong;
                 {
-                    fish.TakeDamage(e_Hook.damage * 2f, e_Hook.damage);
+                    fish.TakeDamage(e_Hook.damage * 1.5f, e_Hook.damage);
                 }
                 else// weak;
                 {

@@ -15,9 +15,9 @@ MonoBehaviour:
   fishName: Star Fish
   rarity: 1
   value: 100
-  maxHealth: 5
+  maxHealth: 10
   weightRange: 10
-  radiusRange: 0.64
+  radiusRange: 0.7
   heightRange: 2.5
   minRandom: 1
   maxRandom: 1
@@ -37,11 +37,11 @@ MonoBehaviour:
   avoidCollisionWeight: 5
   collisionAvoidDst: 5
   strikeRangeVisual:
-  - {x: 215.8495, y: 90.301}
+  - {x: 215, y: 90}
   breakRangeVisual:
-  - {x: -16.7155, y: 83.2289}
-  sliderSpeed: 391.5
+  - {x: -16, y: 83}
+  sliderSpeed: 400
   strikeRange:
-  - {x: 482, y: 522}
+  - {x: 477, y: 522}
   breakRange:
-  - {x: 334, y: 394}
+  - {x: 198, y: 468}

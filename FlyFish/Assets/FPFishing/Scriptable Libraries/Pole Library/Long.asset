@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb95ccfe35d84d4ea3662f57ebe70ce, type: 3}
+  m_Name: Long
+  m_EditorClassIdentifier: 
+  poleImage: {fileID: 21300000, guid: 8eae3674b6a66a4408535e2c4c27a210, type: 3}
+  description: A pole made for longer range
+  spareHooks: 8
+  weightRange: 5
+  lineRange: 30
+  ticker: 0.25
+  priceValue: 10000

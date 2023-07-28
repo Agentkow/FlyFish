@@ -37,11 +37,11 @@ MonoBehaviour:
   avoidCollisionWeight: 5
   collisionAvoidDst: 5
   strikeRangeVisual:
-  - {x: 123.48, y: 167.03}
+  - {x: 123, y: 167}
   breakRangeVisual:
-  - {x: 235, y: 56}
-  sliderSpeed: 391.5
+  - {x: 235, y: 57}
+  sliderSpeed: 450
   strikeRange:
-  - {x: 522, y: 503}
+  - {x: 398, y: 498}
   breakRange:
-  - {x: 503, y: 522}
+  - {x: 498, y: 522}

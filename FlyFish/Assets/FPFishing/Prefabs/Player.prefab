@@ -179,15 +179,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7788926235716851153}
-  m_LocalRotation: {x: -0, y: 0.7429407, z: -0, w: 0.6693572}
-  m_LocalPosition: {x: -37.04, y: 17.9, z: 8.6}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7788926235911280468}
   - {fileID: 7788926235521981292}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 95.965, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7788926235716851155
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -250,6 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 1
   camVertAngle: 0
+  mSpeed: 0
   moveSpeed: 2
   sprintSpeed: 5
   jumpSpeed: 10
@@ -266,6 +267,7 @@ MonoBehaviour:
   ui: {fileID: 0}
   e_Hook: {fileID: 11400000, guid: 81b55b3ea350ac246ba676533978b90a, type: 2}
   e_Pole: {fileID: 11400000, guid: 2e426089b528d1a4492e906ab590821d, type: 2}
+  numOfHooks: 0
   <bp>k__BackingField: {fileID: 11400000, guid: ea76924d05c3dbe4a8ca31884ebdd259, type: 2}
   <state>k__BackingField: 0
 --- !u!1 &7788926235911280465

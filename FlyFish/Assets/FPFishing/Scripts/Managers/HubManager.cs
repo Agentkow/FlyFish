@@ -11,7 +11,6 @@ public class HubManager : MonoBehaviour
     {
         if (GameManager.gm != null)
             moneyDisplay.text = "Current Balance: " + GameManager.gm.money.ToString() + "$";
-
     }
 
     public void HubSellingFish()
@@ -25,7 +24,6 @@ public class HubManager : MonoBehaviour
     {
         if (GameManager.gm != null)
         {
-            
             GameManager.gm.ReturnToMainMenu();
         }
     }

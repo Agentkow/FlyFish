@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Backpack", menuName = ("Backpack/Inventory"))]
-public class Inventory: ScriptableObject
+[CreateAssetMenu(fileName = "Inventory", menuName = ("Inventory"))]
+public class Inventory : ScriptableObject
 {
     [field: SerializeField] public float wallet { get; private set; }
     [field: SerializeField] public float fishInventoryLimit { get; private set; }
     [field: SerializeField] public float currentFishAmount { get; private set; }
 
-    [field:SerializeField] public List<BackpackSlot> fishContainer { get; private set; }
+    [field: SerializeField] public List<BackpackSlot> fishContainer { get; private set; }
 
-private float fullPayout;
+    private float fullPayout;
 
 
     public void AddFish(string name, float _weight, float _size, FishStats stats)
@@ -38,7 +38,7 @@ private float fullPayout;
 
         ClearBackpack();
         return fullPayout;
-        
+
     }
 
     public void ClearBackpack()
@@ -59,8 +59,11 @@ public class BackpackSlot
     public BackpackSlot(string name, float _weight, float _size, FishStats stats)
     {
         fishName = name;
-        weight = (Mathf.Round(_weight * 100))/100;
+        weight = (Mathf.Round(_weight * 100)) / 100;
         size = (Mathf.Round(_size * 100)) / 100;
         fs = stats;
     }
+
 }
+
+

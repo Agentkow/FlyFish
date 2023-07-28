@@ -21,7 +21,7 @@ MonoBehaviour:
   heightRange: 2
   minRandom: 1
   maxRandom: 2
-  armorLevel: 2
+  armorLevel: 1
   territorialness: 0.8
   model: {fileID: 4618277161959616375, guid: 2c95c7adc0969924e9ba3faaf55279aa, type: 3}
   minSpeed: 2
@@ -37,11 +37,11 @@ MonoBehaviour:
   avoidCollisionWeight: 4
   collisionAvoidDst: 5
   strikeRangeVisual:
-  - {x: 123.48, y: 167.03}
+  - {x: 123, y: 167}
   breakRangeVisual:
-  - {x: 235, y: 56}
+  - {x: 235, y: 57}
   sliderSpeed: 391.5
   strikeRange:
-  - {x: 522, y: 503}
+  - {x: 398, y: 498}
   breakRange:
-  - {x: 503, y: 522}
+  - {x: 498, y: 522}

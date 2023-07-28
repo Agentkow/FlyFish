@@ -7,7 +7,7 @@ public class FishSpawner : MonoBehaviour
 
     [SerializeField] private List<Transform> commonFishWayPoints;
     [SerializeField] private List<Transform> rareFishWayPoints;
-    [SerializeField] private float spawnRadius = 10;
+    [SerializeField] private const float spawnRadius = 10;
 
     public void SpawnFish(ObjectPool.FishType typeOfFishSpawner)
     {
